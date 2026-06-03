@@ -1,3 +1,5 @@
+
+// Manage the inventory of items in the Warehouse, allowing encapsulation and data integrity in the Item class.
 import java.util.*;
 
 public class Inventory {

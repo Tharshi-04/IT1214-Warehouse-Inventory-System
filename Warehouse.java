@@ -1,3 +1,4 @@
+//warehouse
 import java.util.Scanner;
 
 public class Warehouse {
