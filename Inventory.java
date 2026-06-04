@@ -1,74 +1,63 @@
-// Manage the inventory of items in the Warehouse, allowing encapsulation and data integrity in the Item class.
-import java.util.*;
+import java.util.ArrayList;
+
 public class Inventory {
-    private HashMap<String, Item> items;
+    private ArrayList<Item> items;
 
     public Inventory() {
-        items = new HashMap<>();
+        items = new ArrayList<>();
     }
 
-    
     public void addItem(Item item) {
-        if (items.containsKey(item.getItemId())) {
-            System.out.println("Item already exists!");
+        items.add(item);
+    }
+
+    public void removeItem(String id) {
+        Item found = null;
+        for (Item item : items) {
+            if (item.getItemId().equalsIgnoreCase(id)) {
+                found = item;
+                break;
+            }
+        }
+        if (found != null) {
+            items.remove(found);
+            System.out.println("Item removed");
         } else {
-            items.put(item.getItemId(), item);
-            System.out.println("Item added successfully.");
+            System.out.println("Item not found");
         }
     }
 
-    
-    public void removeItem(String itemId) {
-        if (items.remove(itemId) != null) {
-            System.out.println("Item removed.");
-        } else {
-            System.out.println("Item not found.");
+    public void updateQuantity(String id, int qty) {
+        for (Item item : items) {
+            if (item.getItemId().equalsIgnoreCase(id)) {
+                item.setQuantity(qty);
+                System.out.println("Quantity updated");
+                return;
+            }
         }
+        System.out.println("Item not found");
     }
 
-    
-    public void updateQuantity(String itemId, int quantity) {
-        Item item = items.get(itemId);
-        if (item != null) {
-            item.setQuantity(quantity);
-            System.out.println("Quantity updated.");
-        } else {
-            System.out.println("Item not found.");
-        }
-    }
-
-  
-    public void searchById(String itemId) {
-        Item item = items.get(itemId);
-        if (item != null) {
-            System.out.println(item);
-        } else {
-            System.out.println("Item not found.");
-        }
-    }
-
-   
-    public void searchByName(String name) {
+    public void searchItem(String key) {
         boolean found = false;
-        for (Item item : items.values()) {
-            if (item.getItemName().equalsIgnoreCase(name)) {
+        for (Item item : items) {
+            if (item.getItemId().equalsIgnoreCase(key) || item.getItemName().equalsIgnoreCase(key)) {
                 System.out.println(item);
                 found = true;
             }
         }
         if (!found) {
-            System.out.println("Item not found.");
+            System.out.println("Item not found");
         }
     }
 
-  
     public void displayAll() {
         if (items.isEmpty()) {
-            System.out.println("Inventory is empty.");
-        } else {
-            for (Item item : items.values()) {
-                System.out.println(item);
-            }
+            System.out.println("Inventory is empty");
+            return;
+        }
+        for (Item item : items) {
+            System.out.println(item);
         }
     }
 }

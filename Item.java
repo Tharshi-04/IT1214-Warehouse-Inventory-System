@@ -1,4 +1,3 @@
-// Manage variables using getter and setter methods, ensuring encapsulation and data integrity in the Item class.
 public class Item {
     private String itemId;
     private String itemName;
@@ -12,7 +11,6 @@ public class Item {
         this.price = price;
     }
 
-    
     public String getItemId() {
         return itemId;
     }
@@ -29,25 +27,11 @@ public class Item {
         return price;
     }
 
-    
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    
-    
     public String toString() {
-        return "ID: " + itemId +
-               ", Name: " + itemName +
-               ", Quantity: " + quantity +
-               ", Price: " + price;
+        return "ID: " + itemId + " | Name: " + itemName + " | Qty: " + quantity + " | Price: " + price;
     }
 }
